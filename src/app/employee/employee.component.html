@@ -1,0 +1,49 @@
+<div class="container">
+    <h2>Employee Table</h2>
+  
+    <div class="form">
+      <input [(ngModel)]="newEmployee.name" placeholder="Name" />
+      <input [(ngModel)]="newEmployee.Email" placeholder="Email" />
+      <input [(ngModel)]="newEmployee.Mobile" placeholder="Mobile" />
+      <input [(ngModel)]="newEmployee.Contry" placeholder="Contry" />
+
+      <button (click)="addEmployee()">Add</button>
+    </div>
+  
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Contry</th>
+
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let emp of employees">
+        <ng-container *ngIf="editingEmployee?.id !== emp.id; else editMode">
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.Email }}</td>
+          <td>{{ emp.Mobile }}</td>
+          <td>{{ emp.Contry }}</td>
+          <td>
+            <button (click)="editEmployee(emp)">Edit</button>
+            <button class="red-btn" (click)="deleteEmployee(emp.id)">Delete</button>
+          </td>
+        </ng-container>
+        <ng-template #editMode>
+            <ng-container *ngIf="editingEmployee">
+              <td><input [(ngModel)]="editingEmployee.name" /></td>
+              <td><input [(ngModel)]="editingEmployee.Email" /></td>
+              <td><input [(ngModel)]="editingEmployee.Mobile" /></td>
+              <td><input [(ngModel)]="editingEmployee.Contry" /></td>
+              <td>
+                <button class="update-btn" (click)="updateEmployee()">Update</button>
+                <button (click)="cancelEdit()">Cancel</button>
+              </td>
+            </ng-container>
+          </ng-template>
+          
+      </tr>
+    </table>
+  </div>
+  
