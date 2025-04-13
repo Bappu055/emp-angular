@@ -6,14 +6,14 @@ import { UserService } from '../services/user.service';
 interface Employee {
   id: number;
   name: string;
-  Email: string;
-  Mobile: number;
-  Contry: string;
+  emailId: string;
+  mobile: number;
+  country: string;
 }
 
 @Component({
   standalone: true,
-  selector: 'app-employee',
+  selector: 'app-employee', 
   imports: [CommonModule, FormsModule],
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css']
@@ -41,13 +41,13 @@ export class EmployeeComponent implements OnInit {
   }
 
   addEmployee(): void {
-    if (this.newEmployee.name && this.newEmployee.Email && this.newEmployee.Mobile && this.newEmployee.Contry) {
+    if (this.newEmployee.name && this.newEmployee.emailId && this.newEmployee.mobile && this.newEmployee.country) {
       const newEmp = {
         id: Date.now(),
         name: this.newEmployee.name,
-        Email: this.newEmployee.Email,
-        Mobile: this.newEmployee.Mobile,
-        Contry: this.newEmployee.Contry
+        emailId: this.newEmployee.emailId,
+        mobile: this.newEmployee.mobile,
+        country: this.newEmployee.country
       } as Employee;
       this.employees.push(newEmp);
       this.newEmployee = {};
